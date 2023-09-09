@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Names of Allah</title>
+    <link rel="stylesheet" type="text/css" href="home.css">
+</head>
+
+<body>
+    <h1>Names of Allah</h1>
+    <button id="list-names-button">List Names in Order</button>
+    <button id="write-meaning-button">Write the Meaning of the Name</button>
+    <button id="write-name-button">Write the Name of the Meaning</button>
+
+    <script>
+        const listNamesButton = document.getElementById("list-names-button");
+        const writeMeaningButton = document.getElementById("write-meaning-button");
+        const writeNameButton = document.getElementById("write-name-button");
+
+        listNamesButton.addEventListener("click", () => {
+            // Open the "list_names.html" file in a new tab
+            window.location.href = "order.html";
+        });
+
+        writeMeaningButton.addEventListener("click", () => {
+            // Open the "write_meaning.html" file in a new tab
+            window.location.href = "meanings.html";
+        });
+
+        writeNameButton.addEventListener("click", () => {
+            // Open the "write_name.html" file in a new tab
+            window.location.href = "names.html";
+        });
+
+        
+    </script>
+
+    <a href="names-and-meanings.html" target="_blank">
+        <button class="show-all">Show All Names and Meanings</button>
+    </a>
+
+        <!-- Button to link to a website -->
+    <a href="https://myislam.org/99-names-of-allah/" target="_blank" class="website-link-button">
+        <button class="website-button">Learn More About Allah's Names</button>
+    </a>
+
+    <!-- YouTube video player -->
+    <div class="youtube-video">
+        <!-- Embed your YouTube video here -->
+        <iframe width="560" height="315" src="https://www.youtube.com/watch?v=AXkWTieLpMk&list=RDMM" frameborder="0" allowfullscreen></iframe>
+
+        <p>If you cannot view the video above, you can watch it <a href="https://www.youtube.com/watch?v=AXkWTieLpMk&list=RDMM" target="_blank">here</a>.</p>
+
+    </div>
+    
+
+      
+</body>
+</html>
