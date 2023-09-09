@@ -102,12 +102,21 @@ const namesAndMeanings = [
   ];
 
 
+ // Initialize the score and currentIndex
+let score = 0;
+let currentIndex = 0;
+
+// Function to update the score display
+function updateScore() {
+    const maxScore = 99; // Maximum score
+    
+    document.getElementById("score-value").textContent = `${score}/${maxScore}`;
+}
+
 const meaningDisplay = document.querySelector(".meaning-of-allah");
 const nameInput = document.getElementById("name-input");
 const checkButton = document.getElementById("check-button");
 const feedback = document.querySelector(".feedback");
-
-let currentIndex = 0;
 
 function displayNextMeaning() {
     if (currentIndex < namesAndMeanings.length) {
@@ -123,18 +132,33 @@ function displayNextMeaning() {
 
 checkButton.addEventListener("click", () => {
     const userInput = nameInput.value.trim();
-    const [name, meaning] = namesAndMeanings[currentIndex];
+    const [name, correctMeaning] = namesAndMeanings[currentIndex];
 
     if (userInput.toLowerCase() === name.toLowerCase()) {
-        currentIndex++;
-        feedback.textContent = "Correct! ";
+        score++; // Increment the score for a correct answer
+        updateScore(); // Update the score display
+        feedback.textContent = "Correct!";
         feedback.style.color = "green";
+    } else {
+        feedback.textContent = `Incorrect. The correct name is: "${name}".`;
+        feedback.style.color = "red";
+    }
+
+    currentIndex++; // Move on to the next name
+    if (currentIndex < namesAndMeanings.length) {
         displayNextMeaning();
     } else {
-        feedback.textContent = "Incorrect. Try again.";
-        feedback.style.color = "red";
+        meaningDisplay.textContent = "You have gone through all the meanings of Allah's names.";
+        nameInput.style.display = "none";
+        checkButton.style.display = "none";
     }
 });
 
 // Display the first meaning when the page loads
 displayNextMeaning();
+updateScore(); // Initialize the score display
+  
+  
+  
+  
+  
