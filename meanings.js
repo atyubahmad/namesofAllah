@@ -106,8 +106,10 @@ const nameDisplay = document.querySelector(".name-of-allah");
 const nameInput = document.getElementById("name-input");
 const checkButton = document.getElementById("check-button");
 const feedback = document.querySelector(".feedback");
+const scoreDisplay = document.querySelector(".score"); // Add this line
 
 let currentIndex = 0;
+let score = 0;
 
 function displayNextName() {
     if (currentIndex < namesAndMeanings.length) {
@@ -121,20 +123,36 @@ function displayNextName() {
     }
 }
 
+function updateScore() {
+    const scoreElement = document.querySelector(".score");
+    scoreElement.textContent = `Score: ${score} / 99`;
+}
+
 checkButton.addEventListener("click", () => {
     const userInput = nameInput.value.trim();
     const [, correctMeaning] = namesAndMeanings[currentIndex]; // Get the correct meaning
 
     if (userInput.toLowerCase() === correctMeaning.toLowerCase()) {
+        score++; // Increment the score for a correct answer
+        updateScore(); // Update the score
         currentIndex++;
         feedback.textContent = "Correct!";
         feedback.style.color = "green";
         displayNextName();
     } else {
-        feedback.textContent = "Incorrect. Try again.";
+        feedback.textContent = `Incorrect. The correct meaning is: "${correctMeaning}". Try again.`;
         feedback.style.color = "red";
+        // Still move to the next name even if the answer is incorrect
+        currentIndex++;
+        displayNextName();
     }
 });
 
 // Display the first name when the page loads
 displayNextName();
+updateScore(); // Initialize the score display
+
+
+
+
+
