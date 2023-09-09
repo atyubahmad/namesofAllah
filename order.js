@@ -100,14 +100,14 @@ const namesOfAllah = [
     "As-Sabur"
 ];
 
-
-
 const nameDisplay = document.getElementById("name-display");
 const nameInput = document.getElementById("name-input");
 const checkButton = document.getElementById("check-button");
 const feedback = document.querySelector(".feedback");
+const scoreDisplay = document.querySelector(".score"); // Add a reference to the score display element
 
 let currentIndex = 0;
+let score = 0; // Initialize the score
 
 function displayNextName() {
     if (currentIndex < namesOfAllah.length) {
@@ -120,20 +120,38 @@ function displayNextName() {
     }
 }
 
+function updateScore() {
+    scoreDisplay.textContent = `Score: ${score} / ${namesOfAllah.length}`;
+}
+
+function moveToNextName() {
+    currentIndex++;
+    if (currentIndex < namesOfAllah.length) {
+        displayNextName();
+    } else {
+        nameDisplay.textContent = "You have gone through all 99 names of Allah SWT";
+        nameInput.style.display = "none";
+        checkButton.style.display = "none";
+    }
+}
+
 checkButton.addEventListener("click", () => {
-    console.log("Button clicked");
     const userInput = nameInput.value.trim();
     const correctName = namesOfAllah[currentIndex];
 
     if (userInput.toLowerCase() === correctName.toLowerCase()) {
-        currentIndex++; 
-        feedback.textContent = "Correct! ";
+        score++; // Increase the score for correct answers
+        feedback.textContent = "Correct!";
         feedback.style.color = "green";
-        displayNextName();
+        updateScore(); // Update the score display
+        moveToNextName(); // Move to the next name
     } else {
-        feedback.textContent = "Incorrect. Try again.";
+        feedback.textContent = `The correct answer is: ${correctName}`;
         feedback.style.color = "red";
+        moveToNextName(); // Move to the next name even if it's incorrect
     }
 });
 
 displayNextName();
+updateScore(); // Initialize the score display
+
