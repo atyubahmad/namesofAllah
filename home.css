@@ -78,6 +78,23 @@ button:hover {
     text-align: center;
 }
 
+/* Style for the YouTube video container */
+.video-wrapper {
+    position: relative;
+    padding-top: 56.25%; /* 16:9 aspect ratio (9 / 16 * 100%) */
+    overflow: hidden;
+}
+
+/* Style for the embedded iframe */
+.video-wrapper iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+
 
 /* Media Query for Average Phone Screen Size */
 @media (max-width: 768px) {
